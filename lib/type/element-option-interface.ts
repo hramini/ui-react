@@ -10,4 +10,6 @@ export interface IReactFrameElementOption<P, S> extends IFrameElementOption<TRea
   name: new () => ReactUnit<P, S>;
 }
 
-export interface IReactTagElementOption<P, S> extends ITagElementOption<TReactElement, P, S> {}
+export interface IReactTagElementOption<P, S> extends ITagElementOption<TReactElement, P, S> {
+  name: string;
+}
