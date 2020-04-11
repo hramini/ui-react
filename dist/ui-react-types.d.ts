@@ -32,6 +32,7 @@ declare class ReactBuilder {
 	private childNodes;
 	private element;
 	baseBuild<P, S>(param: IReactElementOption<P, S>): IElement<TReactElement>;
+	private static checkChildNodes;
 }
 export declare class ReactFrameBuilder extends ReactBuilder implements IFrameBuilder<TReactElement> {
 	buildElement<P, S>(param: IReactFrameElementOption<P, S>): IElement<TReactElement>;
