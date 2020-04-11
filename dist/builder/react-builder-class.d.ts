@@ -5,5 +5,4 @@ export declare class ReactBuilder {
     private childNodes;
     private element;
     baseBuild<P, S>(param: IReactElementOption<P, S>): IElement<TReactElement>;
-    private static checkChildNodes;
 }

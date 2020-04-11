@@ -5,25 +5,8 @@ class ReactBuilder {
     baseBuild(param) {
         const { name, properties, children } = param;
         this.childNodes = (children !== null && children !== void 0 ? children : []);
-        const { childNodes } = this;
-        const { status } = ReactBuilder.checkChildNodes({ childNodes });
-        if (status) {
-            const [child] = childNodes;
-            this.element = react_1.createElement(name, properties, child);
-        }
-        else {
-            this.element = react_1.createElement(name, properties, ...childNodes);
-        }
-        const { element } = this;
-        return { element };
-    }
-    static checkChildNodes(param) {
-        const { childNodes } = param;
-        const { length, 0: child } = childNodes;
-        if (length === 1 && typeof child === 'string') {
-            return { status: true };
-        }
-        return { status: false };
+        this.element = react_1.createElement(name, properties, ...this.childNodes);
+        return { element: this.element };
     }
 }
 exports.ReactBuilder = ReactBuilder;
