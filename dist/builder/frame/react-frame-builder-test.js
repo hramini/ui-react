@@ -14,6 +14,9 @@ describe('@ReactFrameBuilder', () => {
         ui_wrapper_1.Builder.setTagBuilder({
             tagBuilderClass: react_tag_builder_class_1.ReactTagBuilder
         });
+        ui_wrapper_1.Builder.setFrameBuilder({
+            frameBuilderClass: react_frame_builder_class_1.ReactFrameBuilder
+        });
     });
     describe('#buildElement', () => {
         const elementName = 'test-tag-element';

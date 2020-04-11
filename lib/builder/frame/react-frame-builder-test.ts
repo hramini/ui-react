@@ -14,6 +14,9 @@ describe('@ReactFrameBuilder', (): void => {
     Builder.setTagBuilder({
       tagBuilderClass: ReactTagBuilder
     });
+    Builder.setFrameBuilder({
+      frameBuilderClass: ReactFrameBuilder
+    });
   });
 
   describe('#buildElement', (): void => {

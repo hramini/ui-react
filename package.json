@@ -1,6 +1,6 @@
 {
   "name": "ui-react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "./dist/ui-react-expose",
   "types": "./dist/ui-react-types.d.ts",
@@ -10,7 +10,7 @@
     "test": "jest --watchAll --coverage",
     "tsc:compile": "rm -rf ./dist && tsc -p ./tsconfig.json --declarationMap false --sourceMap false --outDir dist",
     "tsc:test": "tsc -p ./tsconfig.json --noEmitOnError false --watch",
-    "dts": "dts-bundle-generator -o dist/ui-react-types.d.ts lib/ui-react-expose.ts"
+    "dts": "dts-bundle-generator --external-imports react ui-wrapper -o dist/ui-react-types.d.ts lib/ui-react-expose.ts"
   },
   "author": "hmd-amini",
   "license": "ISC",
