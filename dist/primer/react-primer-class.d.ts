@@ -3,6 +3,7 @@ import { TReactElement } from '../type/element-type';
 export declare class ReactPrimer implements IPrimer<TReactElement> {
     element: TReactElement;
     target: HTMLElement;
+    constructor();
     setElement(param: IPrimerElement<TReactElement>): void;
     setTarget(param: IPrimerTarget): void;
     start(): void;
