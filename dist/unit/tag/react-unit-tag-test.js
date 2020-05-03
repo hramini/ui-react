@@ -8,7 +8,7 @@ const react_tag_builder_class_1 = require("../../builder/tag/react-tag-builder-c
 const react_unit_tag_demo_class_1 = require("./react-unit-tag-demo-class");
 describe('@ReactUnit', () => {
     beforeAll(() => {
-        ui_wrapper_1.Builder.setTagBuilder({
+        ui_wrapper_1.TagBuilder.setTagBuilder({
             tagBuilderClass: react_tag_builder_class_1.ReactTagBuilder
         });
     });
@@ -62,7 +62,7 @@ describe('@ReactUnit', () => {
         test('expects unit lifeCycleText to be ${} after running react mount lifeCycle', () => {
             const element = react_1.createElement(react_unit_tag_demo_class_1.ReactUnitTagDemo);
             const virtualDocument = new virtual_document_1.VirtualDocument();
-            const { element: div } = virtualDocument.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
+            const { element: div } = virtualDocument.createNewElement({ tagName: virtual_document_1.ElementTag.DIV });
             const reactUnitTagDemo = react_dom_1.render(element, div);
             const { lifeCycleText } = reactUnitTagDemo;
             expect(lifeCycleText).toBe(lifeCycleTextExpectation);

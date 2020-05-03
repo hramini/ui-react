@@ -1,10 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_builder_class_1 = require("../react-builder-class");
-class ReactTagBuilder extends react_builder_class_1.ReactBuilder {
+const react_builder_class_1 = require("../common/react-builder-class");
+class ReactTagBuilder {
     buildElement(param) {
         const { name, properties, children } = param;
-        const { element } = this.baseBuild({ name, properties, children });
+        const reactBuilder = new react_builder_class_1.ReactBuilder({
+            children,
+            element: name,
+            properties
+        });
+        const { element } = reactBuilder.createElement();
         return { element };
     }
 }

@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/indent */
-import { Builder, IElement, IFrameBuilder } from 'ui-wrapper';
-import { TReactElement } from '../../type/element-type';
+import { FrameBuilder, IElement, IFrameBuilder } from 'ui-wrapper';
+import { TReactElement } from '../../ui-react-type';
 import { ReactUnit } from '../react-unit-class';
 import { ReactUnitTagDemo } from '../tag/react-unit-tag-demo-class';
+import {
+  IReactUnitTagDemoProps,
+  IReactUnitTagDemoStates
+} from '../tag/react-unit-tag-demo-interface';
 import {
   IReactUnitFrameDemoProps,
   IReactUnitFrameDemoStates
@@ -17,7 +21,9 @@ export class ReactUnitFrameDemo extends ReactUnit<
 
   public constructor() {
     super();
-    const { frameBuilderInstance } = Builder.getFrameBuilder<TReactElement>();
+
+    const { frameBuilderInstance } = FrameBuilder.getFrameBuilder<TReactElement>();
+
     this.builder = frameBuilderInstance;
     this.state = {
       name: 'before-change'
@@ -25,8 +31,9 @@ export class ReactUnitFrameDemo extends ReactUnit<
   }
 
   public provide(): IElement<TReactElement> {
-    const { element } = this.builder.buildElement({
-      name: ReactUnitTagDemo,
+    const { builder } = this;
+    const { element } = builder.buildElement<IReactUnitTagDemoProps, IReactUnitTagDemoStates>({
+      UnitConstructor: ReactUnitTagDemo,
       properties: {}
     });
 

@@ -1,3 +1,4 @@
+import { IReactUnitTagDemoProps } from '../../unit/tag/react-unit-tag-demo-interface';
 import { ReactTagBuilder } from './react-tag-builder-class';
 
 describe('@ReactTagBuilder', (): void => {
@@ -12,10 +13,9 @@ describe('@ReactTagBuilder', (): void => {
     test(`expects to build an element without properties and children to have ${elementName} as type and an empty object as props`, (): void => {
       const {
         element: { type, props }
-      } = reactTagBuilder.buildElement({
+      } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
         name: elementName,
-        properties: {},
-        children: []
+        properties: {}
       });
 
       expect(type).toBe(elementName);
@@ -25,12 +25,11 @@ describe('@ReactTagBuilder', (): void => {
     test(`expects to build an element with properties and without children to have ${elementName} as type and a name property equals to ${nameProperty} as props`, (): void => {
       const {
         element: { type, props }
-      } = reactTagBuilder.buildElement({
+      } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
         name: elementName,
         properties: {
           name: nameProperty
-        },
-        children: []
+        }
       });
 
       expect(type).toBe(elementName);
@@ -40,10 +39,10 @@ describe('@ReactTagBuilder', (): void => {
     test(`expects to build an element without properties and with single string children to have ${elementName} as type and an object with a string "children" property as props`, (): void => {
       const {
         element: { type, props }
-      } = reactTagBuilder.buildElement({
+      } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
+        children: ['test-child'],
         name: elementName,
-        properties: {},
-        children: ['test-child']
+        properties: {}
       });
 
       expect(type).toBe(elementName);
@@ -53,10 +52,10 @@ describe('@ReactTagBuilder', (): void => {
     test(`expects to build an element without properties and with array of string children to have ${elementName} as type and an object with an array of string "children" property as props`, (): void => {
       const {
         element: { type, props }
-      } = reactTagBuilder.buildElement({
+      } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
+        children: ['test-child-1', 'test-child-2'],
         name: elementName,
-        properties: {},
-        children: ['test-child-1', 'test-child-2']
+        properties: {}
       });
 
       expect(type).toBe(elementName);
@@ -64,7 +63,7 @@ describe('@ReactTagBuilder', (): void => {
     });
 
     test(`expects to build an element without properties and with array of string and ReactElement children to have ${elementName} as type and an object with an array of string and ReactElement as "children" property`, (): void => {
-      const { element: childElement } = reactTagBuilder.buildElement({
+      const { element: childElement } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
         name: 'test-child-element',
         properties: {}
       });
@@ -73,10 +72,10 @@ describe('@ReactTagBuilder', (): void => {
           type,
           props: { children }
         }
-      } = reactTagBuilder.buildElement({
+      } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
+        children: ['test-child-string', childElement],
         name: elementName,
-        properties: {},
-        children: ['test-child-string', childElement]
+        properties: {}
       });
       const [stringChildren, { type: elementChildrenType }] = children;
 
@@ -91,12 +90,12 @@ describe('@ReactTagBuilder', (): void => {
           type,
           props: { name, children }
         }
-      } = reactTagBuilder.buildElement({
+      } = reactTagBuilder.buildElement<IReactUnitTagDemoProps>({
+        children: ['test-child'],
         name: elementName,
         properties: {
           name: nameProperty
-        },
-        children: ['test-child']
+        }
       });
 
       expect(type).toBe(elementName);

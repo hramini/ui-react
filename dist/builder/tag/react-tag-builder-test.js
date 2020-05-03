@@ -12,8 +12,7 @@ describe('@ReactTagBuilder', () => {
         test(`expects to build an element without properties and children to have ${elementName} as type and an empty object as props`, () => {
             const { element: { type, props } } = reactTagBuilder.buildElement({
                 name: elementName,
-                properties: {},
-                children: []
+                properties: {}
             });
             expect(type).toBe(elementName);
             expect(props).toMatchObject({});
@@ -23,26 +22,25 @@ describe('@ReactTagBuilder', () => {
                 name: elementName,
                 properties: {
                     name: nameProperty
-                },
-                children: []
+                }
             });
             expect(type).toBe(elementName);
             expect(props).toMatchObject({ name: nameProperty });
         });
         test(`expects to build an element without properties and with single string children to have ${elementName} as type and an object with a string "children" property as props`, () => {
             const { element: { type, props } } = reactTagBuilder.buildElement({
+                children: ['test-child'],
                 name: elementName,
-                properties: {},
-                children: ['test-child']
+                properties: {}
             });
             expect(type).toBe(elementName);
             expect(props).toMatchObject({ children: 'test-child' });
         });
         test(`expects to build an element without properties and with array of string children to have ${elementName} as type and an object with an array of string "children" property as props`, () => {
             const { element: { type, props } } = reactTagBuilder.buildElement({
+                children: ['test-child-1', 'test-child-2'],
                 name: elementName,
-                properties: {},
-                children: ['test-child-1', 'test-child-2']
+                properties: {}
             });
             expect(type).toBe(elementName);
             expect(props).toMatchObject({ children: ['test-child-1', 'test-child-2'] });
@@ -53,9 +51,9 @@ describe('@ReactTagBuilder', () => {
                 properties: {}
             });
             const { element: { type, props: { children } } } = reactTagBuilder.buildElement({
+                children: ['test-child-string', childElement],
                 name: elementName,
-                properties: {},
-                children: ['test-child-string', childElement]
+                properties: {}
             });
             const [stringChildren, { type: elementChildrenType }] = children;
             expect(type).toBe(elementName);
@@ -64,11 +62,11 @@ describe('@ReactTagBuilder', () => {
         });
         test(`expects to build an element with both properties and children to have ${elementName} as type and an object with name and children as props`, () => {
             const { element: { type, props: { name, children } } } = reactTagBuilder.buildElement({
+                children: ['test-child'],
                 name: elementName,
                 properties: {
                     name: nameProperty
-                },
-                children: ['test-child']
+                }
             });
             expect(type).toBe(elementName);
             expect(name).toBe(nameProperty);

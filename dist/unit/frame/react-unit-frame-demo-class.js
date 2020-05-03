@@ -7,15 +7,16 @@ class ReactUnitFrameDemo extends react_unit_class_1.ReactUnit {
     constructor() {
         super();
         this.lifeCycleText = '';
-        const { frameBuilderInstance } = ui_wrapper_1.Builder.getFrameBuilder();
+        const { frameBuilderInstance } = ui_wrapper_1.FrameBuilder.getFrameBuilder();
         this.builder = frameBuilderInstance;
         this.state = {
             name: 'before-change'
         };
     }
     provide() {
-        const { element } = this.builder.buildElement({
-            name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+        const { builder } = this;
+        const { element } = builder.buildElement({
+            UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
             properties: {}
         });
         return { element };

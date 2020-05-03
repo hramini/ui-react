@@ -11,10 +11,10 @@ describe('@ReactFrameBuilder', () => {
     let reactFrameBuilder;
     beforeAll(() => {
         reactFrameBuilder = new react_frame_builder_class_1.ReactFrameBuilder();
-        ui_wrapper_1.Builder.setTagBuilder({
+        ui_wrapper_1.TagBuilder.setTagBuilder({
             tagBuilderClass: react_tag_builder_class_1.ReactTagBuilder
         });
-        ui_wrapper_1.Builder.setFrameBuilder({
+        ui_wrapper_1.FrameBuilder.setFrameBuilder({
             frameBuilderClass: react_frame_builder_class_1.ReactFrameBuilder
         });
     });
@@ -22,10 +22,10 @@ describe('@ReactFrameBuilder', () => {
         const elementName = 'test-tag-element';
         const namePropertyValue = 'testName';
         const virtualDocument = new virtual_document_1.VirtualDocument();
-        const { element: divElement } = virtualDocument.makeElement({ tagName: virtual_document_1.ElementTag.DIV });
+        const { element: divElement } = virtualDocument.createNewElement({ tagName: virtual_document_1.ElementTag.DIV });
         test(`expects to build an element without properties and children to have ${elementName} as type and an empty object as props`, () => {
             const { element } = reactFrameBuilder.buildElement({
-                name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
                 properties: {}
             });
             const reactUnitTagDemo = react_dom_1.render(element, divElement);
@@ -35,7 +35,7 @@ describe('@ReactFrameBuilder', () => {
         });
         test(`expects to build an element with properties and without children to have ${elementName} as type and a name property equals to ${namePropertyValue} as props`, () => {
             const { element } = reactFrameBuilder.buildElement({
-                name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
                 properties: {
                     name: namePropertyValue
                 }
@@ -47,9 +47,9 @@ describe('@ReactFrameBuilder', () => {
         });
         test(`expects to build an element without properties and with single string children to have ${elementName} as type and an object with a string "children" property as props`, () => {
             const { element } = reactFrameBuilder.buildElement({
-                name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
-                properties: {},
-                children: ['test-child']
+                UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                children: ['test-child'],
+                properties: {}
             });
             const reactUnitTagDemo = react_dom_1.render(element, divElement);
             const { element: { type, props: { children: childrenProperty } } } = reactUnitTagDemo.provide();
@@ -58,9 +58,9 @@ describe('@ReactFrameBuilder', () => {
         });
         test(`expects to build an element without properties and with array of string children to have ${elementName} as type and an object with an array of string "children" property as props`, () => {
             const { element } = reactFrameBuilder.buildElement({
-                name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
-                properties: {},
-                children: ['test-child-1', 'test-child-2']
+                UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                children: ['test-child-1', 'test-child-2'],
+                properties: {}
             });
             const reactUnitTagDemo = react_dom_1.render(element, divElement);
             const { element: { type, props: { children: childrenProperty } } } = reactUnitTagDemo.provide();
@@ -72,9 +72,9 @@ describe('@ReactFrameBuilder', () => {
         test(`expects to build an element without properties and with array of string and ReactElement children to have ${elementName} as type and an object with an array of string and ReactElement as "children" property`, () => {
             const childElement = react_1.createElement('test-child-element', {});
             const { element } = reactFrameBuilder.buildElement({
-                name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
-                properties: {},
-                children: ['test-child-string', childElement]
+                UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                children: ['test-child-string', childElement],
+                properties: {}
             });
             const reactUnitTagDemo = react_dom_1.render(element, divElement);
             const { element: { type, props: { children: childrenProperty } } } = reactUnitTagDemo.provide();
@@ -85,11 +85,11 @@ describe('@ReactFrameBuilder', () => {
         });
         test(`expects to build an element with both properties and children to have ${elementName} as type and an object with name and children as props`, () => {
             const { element } = reactFrameBuilder.buildElement({
-                name: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                UnitConstructor: react_unit_tag_demo_class_1.ReactUnitTagDemo,
+                children: ['test-child'],
                 properties: {
                     name: namePropertyValue
-                },
-                children: ['test-child']
+                }
             });
             const reactUnitTagDemo = react_dom_1.render(element, divElement);
             const { element: { type, props: { name: nameProperty, children: childrenProperty } } } = reactUnitTagDemo.provide();

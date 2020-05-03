@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const react_builder_class_1 = require("../react-builder-class");
-class ReactFrameBuilder extends react_builder_class_1.ReactBuilder {
+const react_builder_class_1 = require("../common/react-builder-class");
+class ReactFrameBuilder {
     buildElement(param) {
-        const { name, properties, children } = param;
-        const { element } = this.baseBuild({ name, properties, children });
+        const { UnitConstructor, properties, children } = param;
+        const reactBuilder = new react_builder_class_1.ReactBuilder({ children, element: UnitConstructor, properties });
+        const { element } = reactBuilder.createElement();
         return { element };
     }
 }

@@ -1,8 +1,8 @@
 import { IBasicProperties } from 'ui-wrapper';
-import { TReactElement } from '../../type/element-type';
+import { TReactElement } from '../../ui-react-type';
 export interface IReactUnitTagDemoProps extends IBasicProperties<TReactElement> {
-    name?: string;
+    readonly name?: string;
 }
 export interface IReactUnitTagDemoStates {
-    name?: string;
+    readonly name?: string;
 }

@@ -1,6 +1,6 @@
 export interface IReactUnitFrameDemoProps {
-    name: string;
+    readonly name: string;
 }
 export interface IReactUnitFrameDemoStates {
-    name?: string;
+    readonly name?: string;
 }

@@ -1,5 +1,5 @@
-import { Builder, IElement, ITagBuilder, IUnitOnBeforeUpdateCheck } from 'ui-wrapper';
-import { TReactElement } from '../../type/element-type';
+import { IElement, ITagBuilder, IUnitOnBeforeUpdateCheck, TagBuilder } from 'ui-wrapper';
+import { TReactElement } from '../../ui-react-type';
 import { ReactUnit } from '../react-unit-class';
 import { IReactUnitTagDemoProps, IReactUnitTagDemoStates } from './react-unit-tag-demo-interface';
 
@@ -9,8 +9,10 @@ export class ReactUnitTagDemo extends ReactUnit<IReactUnitTagDemoProps, IReactUn
 
   public constructor() {
     super();
+
+    const { tagBuilderInstance } = TagBuilder.getTagBuilder<TReactElement>();
+
     this.lifeCycleText += 'C';
-    const { tagBuilderInstance } = Builder.getTagBuilder<TReactElement>();
     this.builder = tagBuilderInstance;
     this.state = {};
   }
@@ -38,10 +40,12 @@ export class ReactUnitTagDemo extends ReactUnit<IReactUnitTagDemoProps, IReactUn
   }
 
   public provide(): IElement<TReactElement> {
+    const { props, builder } = this;
     this.lifeCycleText += 'P';
-    const { element } = this.builder.buildElement({
+
+    const { element } = builder.buildElement<IReactUnitTagDemoProps>({
       name: 'test-tag-element',
-      properties: { ...this.props }
+      properties: { ...props }
     });
 
     return { element };

@@ -6,8 +6,8 @@ class ReactUnitTagDemo extends react_unit_class_1.ReactUnit {
     constructor() {
         super();
         this.lifeCycleText = '';
+        const { tagBuilderInstance } = ui_wrapper_1.TagBuilder.getTagBuilder();
         this.lifeCycleText += 'C';
-        const { tagBuilderInstance } = ui_wrapper_1.Builder.getTagBuilder();
         this.builder = tagBuilderInstance;
         this.state = {};
     }
@@ -28,10 +28,11 @@ class ReactUnitTagDemo extends react_unit_class_1.ReactUnit {
         this.lifeCycleText += 'Bd';
     }
     provide() {
+        const { props, builder } = this;
         this.lifeCycleText += 'P';
-        const { element } = this.builder.buildElement({
+        const { element } = builder.buildElement({
             name: 'test-tag-element',
-            properties: Object.assign({}, this.props)
+            properties: Object.assign({}, props)
         });
         return { element };
     }

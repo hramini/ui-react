@@ -1,23 +1,24 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import { Builder } from 'ui-wrapper';
+import { FrameBuilder, TagBuilder } from 'ui-wrapper';
 import { ReactFrameBuilder } from '../../builder/frame/react-frame-builder-class';
 import { ReactTagBuilder } from '../../builder/tag/react-tag-builder-class';
-import { TReactElement } from '../../type/element-type';
+import { TReactElement } from '../../ui-react-type';
 import { ReactUnitFrameDemo } from './react-unit-frame-demo-class';
 
 describe('@ReactUnitFrame', (): void => {
   beforeAll((): void => {
-    Builder.setFrameBuilder({
+    FrameBuilder.setFrameBuilder({
       frameBuilderClass: ReactFrameBuilder
     });
-    Builder.setTagBuilder({
+    TagBuilder.setTagBuilder({
       tagBuilderClass: ReactTagBuilder
     });
   });
 
   describe('#provide', (): void => {
     const expectType: string = 'function';
+
     test(`expects to return an element with type value of type ${expectType}. It is testing by calling render method`, (): void => {
       const reactUnitFrameDemo: ReactUnitFrameDemo = new ReactUnitFrameDemo();
       const { type } = reactUnitFrameDemo.render();
@@ -29,7 +30,9 @@ describe('@ReactUnitFrame', (): void => {
   describe('#onBeforeProvide', (): void => {
     test('expects no modification in lifeCycleText', (): void => {
       const reactUnitFrameDemo: ReactUnitFrameDemo = new ReactUnitFrameDemo();
+
       reactUnitFrameDemo.onBeforeProvide();
+
       const { lifeCycleText } = reactUnitFrameDemo;
 
       expect(lifeCycleText).toBe('');
@@ -39,7 +42,9 @@ describe('@ReactUnitFrame', (): void => {
   describe('#onAfterProvide', (): void => {
     test('expects no modification in lifeCycleText', (): void => {
       const reactUnitFrameDemo: ReactUnitFrameDemo = new ReactUnitFrameDemo();
+
       reactUnitFrameDemo.onAfterProvide();
+
       const { lifeCycleText } = reactUnitFrameDemo;
 
       expect(lifeCycleText).toBe('');
@@ -58,7 +63,9 @@ describe('@ReactUnitFrame', (): void => {
   describe('#onAfterUpdate', (): void => {
     test('expects no modification in lifeCycleText', (): void => {
       const reactUnitFrameDemo: ReactUnitFrameDemo = new ReactUnitFrameDemo();
+
       reactUnitFrameDemo.onAfterUpdate();
+
       const { lifeCycleText } = reactUnitFrameDemo;
 
       expect(lifeCycleText).toBe('');
@@ -68,7 +75,9 @@ describe('@ReactUnitFrame', (): void => {
   describe('#onBeforeDispose', (): void => {
     test('expects no modification in lifeCycleText', (): void => {
       const reactUnitFrameDemo: ReactUnitFrameDemo = new ReactUnitFrameDemo();
+
       reactUnitFrameDemo.onBeforeDispose();
+
       const { lifeCycleText } = reactUnitFrameDemo;
 
       expect(lifeCycleText).toBe('');
@@ -77,15 +86,18 @@ describe('@ReactUnitFrame', (): void => {
 
   describe('#alterState', (): void => {
     const stateName: string = 'test-text';
+
     test(`expects state.name to be changed to ${stateName}`, (): void => {
       const element: TReactElement = createElement(ReactUnitFrameDemo);
       const div: HTMLElement = document.createElement('div');
       const reactUnitFrameDemo: ReactUnitFrameDemo = render(element, div) as ReactUnitFrameDemo;
+
       reactUnitFrameDemo.alterState({
         state: {
           name: stateName
         }
       });
+
       const {
         state: { name }
       } = reactUnitFrameDemo;

@@ -8,10 +8,10 @@ const react_tag_builder_class_1 = require("../../builder/tag/react-tag-builder-c
 const react_unit_frame_demo_class_1 = require("./react-unit-frame-demo-class");
 describe('@ReactUnitFrame', () => {
     beforeAll(() => {
-        ui_wrapper_1.Builder.setFrameBuilder({
+        ui_wrapper_1.FrameBuilder.setFrameBuilder({
             frameBuilderClass: react_frame_builder_class_1.ReactFrameBuilder
         });
-        ui_wrapper_1.Builder.setTagBuilder({
+        ui_wrapper_1.TagBuilder.setTagBuilder({
             tagBuilderClass: react_tag_builder_class_1.ReactTagBuilder
         });
     });

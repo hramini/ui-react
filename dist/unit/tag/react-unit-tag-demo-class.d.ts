@@ -1,5 +1,5 @@
 import { IElement, IUnitOnBeforeUpdateCheck } from 'ui-wrapper';
-import { TReactElement } from '../../type/element-type';
+import { TReactElement } from '../../ui-react-type';
 import { ReactUnit } from '../react-unit-class';
 import { IReactUnitTagDemoProps, IReactUnitTagDemoStates } from './react-unit-tag-demo-interface';
 export declare class ReactUnitTagDemo extends ReactUnit<IReactUnitTagDemoProps, IReactUnitTagDemoStates> {
